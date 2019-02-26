@@ -1,5 +1,5 @@
-# Redux Electron IPC Middleware
-[![Build Status](https://travis-ci.org/mariotacke/redux-electron-ipc.svg?branch=master)](https://travis-ci.org/mariotacke/redux-electron-ipc) [![npm version](https://badge.fury.io/js/redux-electron-ipc.svg)](https://badge.fury.io/js/redux-electron-ipc) [![Coverage Status](https://coveralls.io/repos/github/mariotacke/redux-electron-ipc/badge.svg?branch=master)](https://coveralls.io/github/mariotacke/redux-electron-ipc?branch=master) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/mariotacke/redux-electron-ipc/master/LICENSE)
+# Redux-Event-Emitter Middleware
+[![Build Status](https://travis-ci.org/mariotacke/redux-event-emitter.svg?branch=master)](https://travis-ci.org/mariotacke/redux-event-emitter) [![npm version](https://badge.fury.io/js/redux-event-emitter.svg)](https://badge.fury.io/js/redux-event-emitter) [![Coverage Status](https://coveralls.io/repos/github/mariotacke/redux-event-emitter/badge.svg?branch=master)](https://coveralls.io/github/mariotacke/redux-event-emitter?branch=master) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/mariotacke/redux-event-emitter/master/LICENSE)
 
 A [Redux](https://github.com/reactjs/redux) middleware to reduce code around ipc
 calls in an [Electron](http://electron.atom.io/) application. You can send and
@@ -8,19 +8,19 @@ events with a simple api.
 
 ## Install
 
-### [npm](https://www.npmjs.com/package/redux-electron-ipc)
+### [npm](https://www.npmjs.com/package/redux-event-emitter)
 ```sh
-npm install --save redux-electron-ipc
+npm install --save redux-event-emitter
 ```
 
 ## Usage
-Check out the full [demo](https://github.com/mariotacke/redux-electron-ipc/tree/master/example)
+Check out the full [demo](https://github.com/mariotacke/redux-event-emitter/tree/master/example)
 application.
 
 ### Window
 ```js
 import { applyMiddleware, createStore } from 'redux';
-import createIpc, { send } from 'redux-electron-ipc';
+import createIpc, { send } from 'redux-event-emitter';
 import { pongActionCreator } from './actions';
 import { exampleReducer } from './reducer';
 
@@ -53,7 +53,7 @@ ipcMain.on('ping', (event, ...args) => {
 
 ## API
 
-`redux-electron-ipc` has a default constructor function for creating ipc
+`redux-event-emitter` has a default constructor function for creating ipc
 middleware, and a named `send` utility function.
 
 ```js
@@ -87,7 +87,7 @@ Behind the scenes, the ipc middleware will trigger the ipc on the given channel
 with any number of arguments.
 
 ```js
-import { send } from 'redux-electron-ipc';
+import { send } from 'redux-event-emitter';
 
 store.dispatch(send('ipc event channel', ...args));
 ```
@@ -110,7 +110,7 @@ const store = createStore(exampleReducer, applyMiddleware(ipc));
 ```
 
 ## What about `redux-thunk`?
-`redux-electron-ipc` supports thunks out of the box as long as you install `redux-thunk` and apply the thunk middleware before the ipc middleware.
+`redux-event-emitter` supports thunks out of the box as long as you install `redux-thunk` and apply the thunk middleware before the ipc middleware.
 
 ### Example
 ```js
@@ -122,5 +122,5 @@ const store = createStore(exampleReducer, applyMiddleware(thunk, ipc));
 ```
 
 ## Questions
-For any questions, please open an [issue](https://github.com/mariotacke/redux-electron-ipc/issues).
+For any questions, please open an [issue](https://github.com/mariotacke/redux-event-emitter/issues).
 Pull requests (with tests) are appreciated.
