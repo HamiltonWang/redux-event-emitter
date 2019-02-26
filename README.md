@@ -1,5 +1,5 @@
 # Redux-Event-Emitter Middleware
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/mariotacke/redux-event-emitter/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/mariotacke/redux-event-emitter/master/LICENSE) [![npm version](https://badge.fury.io/js/redux-event-emitter.svg)](https://badge.fury.io/js/redux-event-emitter)
 
 A [Redux](https://github.com/reactjs/redux) middleware to reduce only one line of code (you don't have to import specific action). Instead I change it to an emitter do that you can fire events with a simple api. Why so? I migrate some code from Electron to React Native so I want to keey the strusture of code unchanged. So this is a replacement (inspired) for Redux-Electron-IPC.
 
