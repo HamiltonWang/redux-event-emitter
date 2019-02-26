@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+- '10'
+- '8'
+- '6'
+script:
+- npm run lint
+- npm test
+- npm run build
+cache:
+  directories:
+  - example/node_modules
+deploy:
+  provider: npm
+  email: tacke.mario@gmail.com
+  skip_cleanup: true
+  api_key:
+    secure: vbwB2GVuqsg2yZ/7++Nhmf66AzeXh858m9t9xQDkWaxjf0MPplgCo71AC4409KrP1S2kXvIYobwE8/GmaoH/69Ie73k54tXMyGRNztzGHsMZjWPiiVs6824G0IUy17BLWCM5mljKVuAnD393hnZvvPBYy5BXnvS9zZt3uuCHJXdXGItcT4RUGAbYo60/QvA6X0F5RlzTdPQMqp0/aoqc2meBae1r3owKIkQ0gm7Ki76SD2U9WAiJ+gJAI+VnuVINLQUCosakpwkg+/m8pkizmukFEu81BTpn4X4c87ftYcPC6wltR+yy8GJN/6m2XS0kP73UlRoVmdh2tlzAudUgQBKvy1bMFZA9tW08YRwTT+PULLLtJrHJ9muNJPPkfZ+mAgmWQoH82STkbXcP/DREIvaIylXm6FEcJ2lmPBjdMGSWpQZBTPPfzBDf6DWkKR3NWxmK5wQ/IloNYkkpIj+PceGjznfLwH2x0QyVBwAnhlqU4jZbWyT72urk1FrcJwR6ueIl76onVp1OhTdE/kmfYSMXbaurLVqPIvnnnaq7kuqlh2kBDygknTkhTQJJ+rQeMHTR6w239qEMTbyvTRRlbg1bGzmvB2YRBykCozPoRhEMXkoz+mt5GngrDkZnDtx3GLkVeED8HqPo1IhIy1yoyJS15mDv3A7URcQtunVV2GQ=
+  on:
+    tags: true
+    node: 8
+    repo: mariotacke/redux-electron-ipc
+after_deploy:
+- npm run coverage
