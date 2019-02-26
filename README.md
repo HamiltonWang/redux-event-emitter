@@ -135,5 +135,5 @@ const store = createStore(exampleReducer, applyMiddleware(thunk, ipc));
 ```
 
 ## Questions
-For any questions, please open an [issue](https://github.com/mariotacke/redux-event-emitter/issues).
+For any questions, please open an [issue](https://github.com/HamiltonWang/redux-event-emitter/issues).
 Pull requests (with tests) are appreciated.
