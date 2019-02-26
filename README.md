@@ -65,15 +65,6 @@ function exampleReducer (state = {}, action) {
 ...
 ```
 
-## API
-
-`redux-event-emitter` has a default constructor function for creating ipc
-middleware, and a named `send` utility function.
-
-```js
-createEvents(events?: Object) => IpcMiddleware
-emit(channel: string, ...arg1?: Object, arg2?: Object, ..., argN?:Object) => Action
-```
 
 ### Events
 The key designates the `events-emitter` channel; the value is a redux action
@@ -92,17 +83,16 @@ creator to be dispatched.
 
 ### Examples
 
-#### Sending an IPC event
-Use the utility function `send` to issue an ipc message to the main thread. The
+#### Sending an event
+Use the utility function `emit` to issue an event-emitter message. The
 method signature is the same as ipcRenderer's send.
 
-Behind the scenes, the ipc middleware will trigger the ipc on the given channel
-with any number of arguments.
+Behind the scenes, the  middleware will trigger the tiny-emitter on the given channel with any number of arguments.
 
 ```js
 import { emit } from 'redux-event-emitter';
 
-store.dispatch(emit('ipc event channel', ...args));
+store.dispatch(emit('event channel', ...args));
 ```
 
 #### Receiving an reducers event
