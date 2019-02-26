@@ -1,7 +1,7 @@
 {
   "name": "redux-event-emitter",
-  "version": "1.2.0",
-  "description": "Redux Electron IPC Middleware",
+  "version": "1.0.1",
+  "description": "Redux Event Emitter Middleware",
   "main": "index.js",
   "scripts": {
     "test": "nyc mocha",
@@ -15,17 +15,17 @@
   ],
   "keywords": [
     "redux",
-    "electron",
-    "ipc",
+    "event",
+    "emitter",
     "middleware"
   ],
-  "author": "Mario Tacke <tacke.mario@gmail.com>",
+  "author": "Mario Tacke <tacke.mario@gmail.com>, Hamilton Wang <hamilton@aiart.io>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mariotacke/redux-electron-ipc.git"
+    "url": "https://github.com/HamiltonWang/redux-electron-ipc.git"
   },
   "bugs": {
-    "url": "https://github.com/mariotacke/redux-electron-ipc/issues"
+    "url": "https://github.com/HamiltonWang/redux-electron-ipc/issues"
   },
   "license": "MIT",
   "devDependencies": {
