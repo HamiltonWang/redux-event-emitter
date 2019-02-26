@@ -5,11 +5,10 @@ import createEvents, { emit } from '../../';
 function exampleReducer (state = {}, action) {
   switch (action.type) {
     case 'IPC_PONG':
-      console.log('Pong', action); // eslint-disable-line no-console
+      console.log('Pong', action);
       return state;
     case 'IPC_PING':
-      console.log('Ping', JSON.stringify(action)); // eslint-disable-line no-console
-
+      console.log('Ping', JSON.stringify(action)); 
       return state;
     default:
       return state;
@@ -25,7 +24,7 @@ function pongActionCreator ( arg1, arg2, arg3) {
   };
 }
 
-function pingActionCreator ( arg1) {
+function pingActionCreator ( arg1 ) {
 
   return {
     type: 'IPC_PING',

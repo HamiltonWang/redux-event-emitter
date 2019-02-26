@@ -14,7 +14,7 @@ npm install --save redux-event-emitter
 Check out the full [demo](https://github.com/HamiltonWang/redux-event-emitter/tree/master/example)
 application.
 
-### Window
+### Usage
 ```js
 import { applyMiddleware, createStore } from 'redux';
 import createEvents, { emit } from 'redux-event-emitter';
@@ -34,19 +34,35 @@ const store = createStore(exampleReducer, applyMiddleware(_events));
 store.dispatch(emit('ping', { a:1, b:3, c:5 }));
 ```
 
-### Main
+### Action
 ```js
-// your regular ipc setup
-const electron = require('electron');
-const { ipcMain } = electron;
-
 ...
+function pingActionCreator ( arg1 ) {
 
-// pong event with arguments back to caller
-ipcMain.on('ping', (event, ...args) => {
-  console.log('Ping', ...args);
-  event.sender.send('pong', ...args);
-});
+  return {
+    type: 'IPC_PING',
+    arg1
+  };
+}
+...
+```
+
+### Reducer
+```js
+...
+function exampleReducer (state = {}, action) {
+  switch (action.type) {
+    case 'IPC_PONG':
+      console.log('Pong', action);
+      return state;
+    case 'IPC_PING':
+      console.log('Ping', JSON.stringify(action)); 
+      return state;
+    default:
+      return state;
+  }
+}
+...
 ```
 
 ## API
@@ -56,17 +72,16 @@ middleware, and a named `send` utility function.
 
 ```js
 createEvents(events?: Object) => IpcMiddleware
-send(channel: string, ...arg1?: Object, arg2?: Object, ..., argN?:Object) => Action
+emit(channel: string, ...arg1?: Object, arg2?: Object, ..., argN?:Object) => Action
 ```
 
 ### Events
-Each key on the `events` object (default: `{}`) registers a single ipc channel
-response. The key designates the `ipc` channel; the value is a redux action
+The key designates the `events-emitter` channel; the value is a redux action
 creator to be dispatched.
 
 ```js
 {
-  'ipc channel name': (event, ...args) => {
+  'channel name': (...args) => {
     return {
       type: 'YOUR_ACTION_TYPE',
       ... optional mapping of arguments ...
