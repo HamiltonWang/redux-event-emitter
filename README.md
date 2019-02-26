@@ -1,5 +1,4 @@
 # Redux-Event-Emitter Middleware
-[![Build Status](https://travis-ci.org/mariotacke/redux-event-emitter.svg?branch=master)](https://travis-ci.org/mariotacke/redux-event-emitter) [![npm version](https://badge.fury.io/js/redux-event-emitter.svg)](https://badge.fury.io/js/redux-event-emitter) [![Coverage Status](https://coveralls.io/repos/github/mariotacke/redux-event-emitter/badge.svg?branch=master)](https://coveralls.io/github/mariotacke/redux-event-emitter?branch=master) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/mariotacke/redux-event-emitter/master/LICENSE)
 
 A [Redux](https://github.com/reactjs/redux) middleware to reduce code around ipc
 calls in an [Electron](http://electron.atom.io/) application. You can send and
