@@ -105,21 +105,27 @@ import { emit } from 'redux-event-emitter';
 store.dispatch(emit('ipc event channel', ...args));
 ```
 
-#### Receiving an IPC event
+#### Receiving an reducers event
 To receive events, register a channel response when configuring the middleware.
+e.g. include all your action functions into createEvents so that all can be called by using emitter.
 
+### example
 ```js
-const ipc = createEvents({
-  'channel to listen to': () => {
-    return {
-      type: 'IPC_RESPONSE_ACTION',
-      ... optional mapping of arguments ...
-    }
-  }
+const ipc = createIpc({
+  receiveLocale, //<-- first action function
+  lndSyncStatus, //<-- second action function
   ...
 });
 
 const store = createStore(exampleReducer, applyMiddleware(ipc));
+```
+### action function
+```js
+...
+export const receiveLocale = (locale) => dispatch => {
+  dispatch(setLocale(locale))
+}
+...
 ```
 
 ## What about `redux-thunk`?
