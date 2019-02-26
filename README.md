@@ -1,9 +1,7 @@
 # Redux-Event-Emitter Middleware
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/mariotacke/redux-event-emitter/master/LICENSE)
 
-A [Redux](https://github.com/reactjs/redux) middleware to reduce code around ipc
-calls in an [Electron](http://electron.atom.io/) application. You can send and
-receive [IPC](https://github.com/electron/electron/blob/master/docs/api/ipc-main.md)
-events with a simple api.
+A [Redux](https://github.com/reactjs/redux) middleware to reduce only one line of code (you don't have to import specific action). Instead I change it to an emitter do that you can fire events with a simple api. Why so? I migrate some code from Electron to React Native so I want to keey the strusture of code unchanged. So this is a replacement for Redux-Electron-IPC.
 
 ## Install
 
@@ -13,26 +11,27 @@ npm install --save redux-event-emitter
 ```
 
 ## Usage
-Check out the full [demo](https://github.com/mariotacke/redux-event-emitter/tree/master/example)
+Check out the full [demo](https://github.com/HamiltonWang/redux-event-emitter/tree/master/example)
 application.
 
 ### Window
 ```js
 import { applyMiddleware, createStore } from 'redux';
-import createIpc, { send } from 'redux-event-emitter';
-import { pongActionCreator } from './actions';
+import createEvents, { emit } from 'redux-event-emitter';
+import { pingActionCreator } from './actions';
 import { exampleReducer } from './reducer';
 
-// register an action creator to an ipc channel (key/channel, value/action creator)
-const ipc = createIpc({
-  'pong': pongActionCreator, // receive a message
+// register an action creator to an event
+const _events = createEvents({
+  'ping': pingActionCreator, // receive a message
   ...
 });
 
-const store = createStore(exampleReducer, applyMiddleware(ipc));
+const store = createStore(exampleReducer, applyMiddleware(_events));
 
-// send a message with arguments through the `send` utility function
-store.dispatch(send('ping', 'redux', 'electron', 'ipc'));
+// emit a message with arguments through the `emit` utility function
+// emit(channel, paramter)
+store.dispatch(emit('ping', { a:1, b:3, c:5 }));
 ```
 
 ### Main
@@ -56,7 +55,7 @@ ipcMain.on('ping', (event, ...args) => {
 middleware, and a named `send` utility function.
 
 ```js
-createIpc(events?: Object) => IpcMiddleware
+createEvents(events?: Object) => IpcMiddleware
 send(channel: string, ...arg1?: Object, arg2?: Object, ..., argN?:Object) => Action
 ```
 
@@ -86,16 +85,16 @@ Behind the scenes, the ipc middleware will trigger the ipc on the given channel
 with any number of arguments.
 
 ```js
-import { send } from 'redux-event-emitter';
+import { emit } from 'redux-event-emitter';
 
-store.dispatch(send('ipc event channel', ...args));
+store.dispatch(emit('ipc event channel', ...args));
 ```
 
 #### Receiving an IPC event
 To receive events, register a channel response when configuring the middleware.
 
 ```js
-const ipc = createIpc({
+const ipc = createEvents({
   'channel to listen to': () => {
     return {
       type: 'IPC_RESPONSE_ACTION',
@@ -113,7 +112,7 @@ const store = createStore(exampleReducer, applyMiddleware(ipc));
 
 ### Example
 ```js
-const ipc = createIpc({
+const ipc = createEvents({
   'ipc channel name': () => dispatch =>
     dispatch({ type: 'DELAYED_ACTION_TYPE' })
 });
