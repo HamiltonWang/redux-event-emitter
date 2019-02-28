@@ -1,6 +1,6 @@
 {
   "name": "redux-event-emitter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Redux Event Emitter Middleware",
   "main": "index.js",
   "scripts": {
@@ -22,10 +22,10 @@
   "author": "Mario Tacke <tacke.mario@gmail.com>, Hamilton Wang <hamilton@aiart.io>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HamiltonWang/redux-electron-ipc.git"
+    "url": "https://github.com/HamiltonWang/redux-event-emitter.git"
   },
   "bugs": {
-    "url": "https://github.com/HamiltonWang/redux-electron-ipc/issues"
+    "url": "https://github.com/HamiltonWang/redux-event-emitter/issues"
   },
   "license": "MIT",
   "devDependencies": {
@@ -49,7 +49,5 @@
     "webpack": "^1.13.1",
     "webpack-cli": "^3.2.3"
   },
-  "dependencies": {
-    "tiny-emitter": "^2.1.0"
-  }
+  "dependencies": {}
 }

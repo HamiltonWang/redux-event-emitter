@@ -17,6 +17,7 @@
     "webpack-cli": "^3.2.3"
   },
   "dependencies": {
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "tiny-emitter": "^2.1.0"
   }
 }
