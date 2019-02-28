@@ -21,7 +21,7 @@ import createEvents, { emit } from 'redux-event-emitter';
 import { pingActionCreator } from './actions';
 import { exampleReducer } from './reducer';
 
-// register an action creator to an event
+// register an action creators to an event
 const _events = createEvents({
   'ping': pingActionCreator, // receive a message
   ...

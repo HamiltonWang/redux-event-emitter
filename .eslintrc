@@ -15,7 +15,7 @@
     }
   },
   "rules": {
-    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "indent": ["error", "tab", { "SwitchCase": 1 }],
     "keyword-spacing": 2,
     "object-curly-spacing": [2, "always"],
     "object-shorthand": [2, "always"],
@@ -34,6 +34,6 @@
     "quotes": [2, "single"],
     "require-yield": 1,
     "semi": 2,
-    "space-before-function-paren": 2
+    "space-before-function-paren": [2, "never"]
   }
 }
