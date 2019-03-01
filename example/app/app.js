@@ -1,8 +1,8 @@
 /* eslint-disable quote-props */
 import { applyMiddleware, createStore } from 'redux';
-import ReduxEventEmitter from '../../';
+import ee from '../../';
 import thunk from 'redux-thunk';
-const ee = new ReduxEventEmitter();
+
 
 function exampleReducer(state = {}, action) {
 	switch (action.type) {

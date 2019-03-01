@@ -1,6 +1,6 @@
 import Emitter from 'tiny-emitter';
 
-export default class ReduxEventEmitter {
+class ReduxEventEmitter {
 	constructor() {
 		this.emitter = new Emitter();
 	}
@@ -95,3 +95,5 @@ export default class ReduxEventEmitter {
 		return this.createEvents(events);
 	}
 }
+
+export default new ReduxEventEmitter();
