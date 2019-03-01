@@ -1,40 +1,43 @@
 'use strict';
 
-const webpack        = require('webpack');
+const webpack = require('webpack');
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-const env            = process.env.WEBPACK_ENV;
-const library        = 'redux-event-emitter';
-const plugins        = [];
+const env = process.env.WEBPACK_ENV;
+const library = 'redux-event-emitter';
+const plugins = [];
 
 let filename;
 
 if (env === 'production') {
-  plugins.push(new UglifyJsPlugin({ minimize: true }));
-  filename = `${library}.min.js`;
+	plugins.push(new UglifyJsPlugin({ minimize: true }));
+	filename = `${library}.min.js`;
 } else {
-  filename = `${library}.js`;
+	filename = `${library}.js`;
 }
 
 const config = {
-  entry: `${__dirname}/src/index.js`,
-  output: {
-    path: `${__dirname}/dist`,
-    filename,
-    library,
-    libraryTarget: 'umd',
-    umdNamedDefine: true
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'babel'
-      }
-    ]
-  },
-  target: 'node',
-  plugins
+	entry: `${__dirname}/src/index.js`,
+	output: {
+		path: `${__dirname}/dist`,
+		filename,
+		library,
+		libraryTarget: 'umd',
+		umdNamedDefine: true,
+	},
+	module: {
+		loaders: [
+			{
+				test: /\.jsx?$/,
+				exclude: /node_modules/,
+				loader: 'babel-loader',
+				query: {
+					presets: ['es2015', 'env']  //babel-preset-env
+				}
+			},
+		],
+	},
+	target: 'node',
+	plugins,
 };
 
 module.exports = config;

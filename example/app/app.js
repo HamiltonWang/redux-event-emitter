@@ -1,7 +1,8 @@
 /* eslint-disable quote-props */
 import { applyMiddleware, createStore } from 'redux';
-import createEvents, { emit } from '../../';
+import ReduxEventEmitter from '../../';
 import thunk from 'redux-thunk';
+const ee = new ReduxEventEmitter();
 
 function exampleReducer(state = {}, action) {
 	switch (action.type) {
@@ -33,20 +34,18 @@ function pingActionCreator(arg1) {
 }
 
 const pingAction = (arg1) => dispatch => {
-	console.log('...test');
-	dispatch(pingActionCreator(arg1));
-		
+	dispatch(pingActionCreator(arg1));	
 };
 
-const ipc = createEvents({
+const ipc = ee.createEvents({
 	'pong': pongActionCreator,
-	'ping': pingActionCreator,
-	pingAction,
+	'ping': pingActionCreator
 });
 
-const store = createStore(exampleReducer, applyMiddleware(thunk, ipc));
+const ipc2 = ee.once( { pingAction });
 
-store.dispatch(emit('ping', { a: 122, b: 2, c: 3 }));
-store.dispatch(emit('pingAction', { a: 4, b: 5, c: 6 }));
-store.dispatch(pingAction({ v:1111 }));
-//emit('ping', { a:1, b:2, c:3 });
+const store = createStore(exampleReducer, applyMiddleware(thunk, ipc, ipc2));
+
+store.dispatch(ee.emit('ping', { a: 122, b: 2, c: 3 }));
+store.dispatch(ee.emit('pingAction', { a: 1, b: 5, c: 6 }));
+store.dispatch(ee.emit('pingAction', { a: 1, b: 5, c: 6 })); // second time is useless
