@@ -46,11 +46,12 @@ emitter.off('ping');
 ### Action
 ```js
 ...
-function pingActionCreator ( arg1 ) {
+function pingActionCreator ( arg1, arg2 ) {
 
   return {
     type: 'IPC_PING',
-    arg1
+    arg1,
+    arg2
   };
 }
 ...
