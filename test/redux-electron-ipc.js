@@ -16,7 +16,7 @@ class ipcMock extends EventEmitter {
 }
 
 describe('redux electron ipc', () => {
-	let createIpc;
+	let createEvents;
 	let send;
 	let ipcRenderer;
 
@@ -28,11 +28,11 @@ describe('redux electron ipc', () => {
 			electron: { ipcRenderer },
 		});
 
-		createIpc = lib.default;
+		createEvents = lib.default;
 		send = lib.send;
 	});
 
-	describe('createIpc', () => {
+	describe('createEvents', () => {
 		it('should fire registered ipc event handlers', () => {
 			const testReducer = (state = { test: 0 }, action) => {
 				switch (action.type) {
@@ -43,7 +43,7 @@ describe('redux electron ipc', () => {
 				}
 			};
 
-			const ipc = createIpc({
+			const ipc = createEvents({
 				'test-channel': () => {
 					return { type: 'IPC_TEST' };
 				},
@@ -72,7 +72,7 @@ describe('redux electron ipc', () => {
 				}
 			};
 
-			const ipc = createIpc({
+			const ipc = createEvents({
 				'test-channel': () => dispatch =>
 					dispatch({ type: 'DELAYED_IPC_TEST' }),
 			});
@@ -86,27 +86,27 @@ describe('redux electron ipc', () => {
 		});
 
 		it('should validate events object', () => {
-			expect(() => createIpc()).to.not.throw;
-			expect(() => createIpc({})).to.not.throw;
+			expect(() => createEvents()).to.not.throw;
+			expect(() => createEvents({})).to.not.throw;
 
-			expect(() => createIpc(0)).to.throw(
+			expect(() => createEvents(0)).to.throw(
 				TypeError,
-				/createIpc expects an events object as its first parameter, you passed type "number"/
+				/createEvents expects an events object as its first parameter, you passed type "number"/
 			);
-			expect(() => createIpc('invalid')).to.throw(
+			expect(() => createEvents('invalid')).to.throw(
 				TypeError,
-				/createIpc expects an events object as its first parameter, you passed type "string"/
+				/createEvents expects an events object as its first parameter, you passed type "string"/
 			);
 
-			expect(() => createIpc({ channel: () => ({ type: 'TEST' }) })).to
+			expect(() => createEvents({ channel: () => ({ type: 'TEST' }) })).to
 				.not.throw;
-			expect(() => createIpc({ channel: false })).to.throw(
+			expect(() => createEvents({ channel: false })).to.throw(
 				TypeError,
-				/Each key in createIpc's events object must be a dispatch-able function, key "channel" is of type "boolean"/
+				/Each key in createEvents's events object must be a dispatch-able function, key "channel" is of type "boolean"/
 			);
-			expect(() => createIpc({ channel: 'invalid' })).to.throw(
+			expect(() => createEvents({ channel: 'invalid' })).to.throw(
 				TypeError,
-				/Each key in createIpc's events object must be a dispatch-able function, key "channel" is of type "string"/
+				/Each key in createEvents's events object must be a dispatch-able function, key "channel" is of type "string"/
 			);
 		});
 	});

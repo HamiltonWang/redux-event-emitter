@@ -1,7 +1,7 @@
 # Redux-Event-Emitter Middleware
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/mariotacke/redux-event-emitter/master/LICENSE) [![npm version](https://badge.fury.io/js/redux-event-emitter.svg)](https://badge.fury.io/js/redux-event-emitter)
 
-A [Redux](https://github.com/reactjs/redux) middleware to reduce only one line of code (you don't have to import specific action). Instead I change it to an emitter do that you can fire events with a simple api. Why so? I migrate some code from Electron to React Native so I want to keey the strusture of code unchanged. So this is a replacement (inspired) for Redux-Electron-IPC.
+A [Redux](https://github.com/reactjs/redux) middleware to reduce only one line of code (you don't have to import specific action). Instead I change it to an emitter so that you can fire events with a simple api. Why so? I migrate some code from Electron to React Native so I want to keey the strusture of code unchanged. So this is a replacement (inspired) for Redux-Electron-IPC. With this libray, you may refactor your electron code and reat native code into a common shared code and refactor out Electron's IPC(possibly).
 
 ## Install
 
@@ -111,7 +111,7 @@ e.g. include all your action functions into createEvents so that all can be call
 
 ### example
 ```js
-const ipc = emitter.createIpc({
+const ipc = emitter.createEvents({
   receiveLocale, //<-- first action function
   lndSyncStatus, //<-- second action function
   ...

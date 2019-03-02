@@ -15,7 +15,7 @@ class ReduxEventEmitter {
 		Object.keys(events).forEach(key => {
 			if (typeof events[key] !== 'function') {
 				throw new TypeError(
-					`Each key in createIpc's events object must be a dispatch-able function, key "${key}" is of type "${typeof events[
+					`Each key in createEvents's events object must be a dispatch-able function, key "${key}" is of type "${typeof events[
 						key
 					]}"`
 				);
@@ -52,7 +52,7 @@ class ReduxEventEmitter {
 		Object.keys(events).forEach(key => {
 			if (typeof events[key] !== 'function') {
 				throw new TypeError(
-					`Each key in createIpc's events object must be a dispatch-able function, key "${key}" is of type "${typeof events[
+					`Each key in createEvents's events object must be a dispatch-able function, key "${key}" is of type "${typeof events[
 						key
 					]}"`
 				);
