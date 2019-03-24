@@ -4,15 +4,15 @@ const { app, BrowserWindow, ipcMain } = electron;
 let win;
 
 app.on('ready', () => {
-  win = new BrowserWindow();
+	win = new BrowserWindow();
 
-  win.loadURL(`file://${__dirname}/dist/index.html`);
+	win.loadURL(`file://${__dirname}/dist/index.html`);
 
-  win.webContents.openDevTools();
+	win.webContents.openDevTools();
 
-  win.on('closed', () => {
-    win = null;
-  });
+	win.on('closed', () => {
+		win = null;
+	});
 });
 
 // ping pong event with arguments back to caller

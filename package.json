@@ -1,8 +1,8 @@
 {
   "name": "redux-event-emitter",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Redux Event Emitter Middleware",
-  "main": "index.js",
+  "main": "dist/redux-event-emitter.min.js",
   "scripts": {
     "test": "nyc mocha",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
