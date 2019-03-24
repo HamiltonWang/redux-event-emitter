@@ -1,6 +1,6 @@
 /* eslint-disable quote-props */
 import { applyMiddleware, createStore } from 'redux';
-import reduxEventEmitter from '../../';
+import { reduxEventEmitter } from '../../';
 import thunk from 'redux-thunk';
 
 

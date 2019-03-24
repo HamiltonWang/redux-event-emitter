@@ -96,5 +96,4 @@ class ReduxEventEmitter {
 	}
 }
 
-const reduxEventEmitter = new ReduxEventEmitter();
-export default reduxEventEmitter;
+export let reduxEventEmitter = new ReduxEventEmitter();
