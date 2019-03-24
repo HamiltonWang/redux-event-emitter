@@ -17,18 +17,18 @@ application.
 ### Usage
 ```js
 import { applyMiddleware, createStore } from 'redux';
-import emitter from 'redux-event-emitter';
+import { reduxEventEmitter } from 'redux-event-emitter';
 import { pingActionCreator } from './actions';
 import { exampleReducer } from './reducer';
 
 // register an action creators to an event
-const ipc = emitter.createEvents({
+const ipc = reduxEventEmitter.createEvents({
   'ping': pingActionCreator, // receive a message
   ...
 });
 
 // and/or if you want once
-const ipc2 = emitter.once({
+const ipc2 = reduxEventEmitter.once({
   pongActionCreator, // another way of writing it if you don't want a different key
   ...
 });
@@ -37,10 +37,10 @@ const store = createStore(exampleReducer, applyMiddleware(ipc, ipc2));
 
 // emit a message with arguments through the `emit` utility function
 // emit(channel, paramter)
-store.dispatch(emitter.emit('ping', { a:1, b:3, c:5 }));
+store.dispatch(reduxEventEmitter.emit('ping', { a:1, b:3, c:5 }));
 
 // disable it
-emitter.off('ping');
+reduxEventEmitter.off('ping');
 ```
 
 ### Action
@@ -100,18 +100,18 @@ method signature is the same as ipcRenderer's send.
 Behind the scenes, the  middleware will trigger the tiny-emitter on the given channel with any number of arguments.
 
 ```js
-import emitter from 'redux-event-emitter';
+import { reduxEventEmitter } from 'redux-event-emitter';
 
-store.dispatch(emitter.emit('event channel', ...args));
+store.dispatch(reduxEventEmitter.emit('event channel', ...args));
 ```
 
 #### Receiving an reducers event
 To receive events, register a channel response when configuring the middleware.
-e.g. include all your action functions into createEvents so that all can be called by using emitter.
+e.g. include all your action functions into createEvents so that all can be called by using reduxEventEmitter.
 
 ### example
 ```js
-const ipc = emitter.createEvents({
+const ipc = reduxEventEmitter.createEvents({
   receiveLocale, //<-- first action function
   lndSyncStatus, //<-- second action function
   ...
@@ -133,7 +133,7 @@ export const receiveLocale = (locale) => dispatch => {
 
 ### Example
 ```js
-const ipc = emitter.createEvents({
+const ipc = reduxEventEmitter.createEvents({
   'ipc channel name': () => dispatch =>
     dispatch({ type: 'DELAYED_ACTION_TYPE' })
 });

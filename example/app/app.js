@@ -1,6 +1,6 @@
 /* eslint-disable quote-props */
 import { applyMiddleware, createStore } from 'redux';
-import ee from '../../';
+import reduxEventEmitter from '../../';
 import thunk from 'redux-thunk';
 
 
@@ -37,15 +37,15 @@ const pingAction = (arg1) => dispatch => {
 	dispatch(pingActionCreator(arg1));	
 };
 
-const ipc = ee.createEvents({
+const ipc = reduxEventEmitter.createEvents({
 	'pong': pongActionCreator,
 	'ping': pingActionCreator
 });
 
-const ipc2 = ee.once( { pingAction });
+const ipc2 = reduxEventEmitter.once( { pingAction });
 
 const store = createStore(exampleReducer, applyMiddleware(thunk, ipc, ipc2));
 
-store.dispatch(ee.emit('ping', { a: 122, b: 2, c: 3 }));
-store.dispatch(ee.emit('pingAction', { a: 1, b: 5, c: 6 }));
-store.dispatch(ee.emit('pingAction', { a: 1, b: 5, c: 6 })); // second time is useless
+store.dispatch(reduxEventEmitter.emit('ping', { a: 122, b: 2, c: 3 }));
+store.dispatch(reduxEventEmitter.emit('pingAction', { a: 1, b: 5, c: 6 }));
+store.dispatch(reduxEventEmitter.emit('pingAction', { a: 1, b: 5, c: 6 })); // second time is useless
